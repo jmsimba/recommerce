@@ -128,7 +128,8 @@
   /* Menu Mobile*/
   .mobile-menu {
     position: absolute;
-    top: 60px;
+    background: var(--white);
+    top: 62px;
     padding: 24px;
   }
   .mobile-menu a {
