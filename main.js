@@ -4,11 +4,15 @@ const menuIcon = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const shoppingCar = document.querySelector('.navbar-shopping-cart');
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
-const cardsContainer = document.querySelector('.cards-container')
+const cardsContainer = document.querySelector('.cards-container');
+const productDetail = document.querySelector('#productDetail');
+const productDetailCloseicon =document.querySelector('.product-detail-close');
+const productInfo = document.querySelector('product-info');
 
 menuEmail.addEventListener('click',toggleDesktopMenu);
 menuIcon.addEventListener('click',toggleMobileMenu);
 shoppingCar.addEventListener('click',toggleCarDet);
+productDetailCloseicon.addEventListener('click',closeProductDetail);
 
 function toggleDesktopMenu (){
     const isAsideProdDet = shoppingCartContainer.classList.contains('inactive');
@@ -16,6 +20,7 @@ function toggleDesktopMenu (){
         shoppingCartContainer.classList.toggle('inactive');
     }
     desktopMenu.classList.toggle('inactive');
+    productDetail.classList.add('inactive');
 }
 
 function toggleMobileMenu (){
@@ -23,6 +28,7 @@ function toggleMobileMenu (){
     if(!isAsideProdDet){
         shoppingCartContainer.classList.toggle('inactive');
     }
+    productDetail.classList.add('inactive');
     mobileMenu.classList.toggle('inactive');
 }
 
@@ -36,6 +42,18 @@ function toggleCarDet (){
         desktopMenu.classList.toggle('inactive');
     } 
     shoppingCartContainer.classList.toggle('inactive'); 
+    productDetail.classList.add('inactive');
+}
+
+function closeProductDetail (){
+    productDetail.classList.add('inactive');
+}
+
+function openProductDetail(){
+    productInfo
+    desktopMenu.classList.add('inactive');
+    shoppingCartContainer.classList.add('inactive'); 
+    productDetail.classList.remove('inactive');
 }
 /*Array de Objetos*/
 const productList = [];
@@ -70,24 +88,14 @@ productList.push({
     price: 1230,
     image: 'https://images.pexels.com/photos/13071952/pexels-photo-13071952.jpeg?auto=compress&cs=tinysrgb&w=400',
 });
-/*<div class="product-card">
-    <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-    <div class="product-info">
-        <div>
-            <p>$120,00</p>
-            <p>Bike</p>
-        </div>
-        <figure>
-            <img src="./icons/bt_add_to_cart.svg" alt="">
-        </figure>
-    </div>
-</div> */
+
 
 function renderProducts(arr){
     for (product of arr ){
         /*Maqueto product Card*/
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
+        productCard.addEventListener('click',openProductDetail);
     
         const img = document.createElement('img');
         img.setAttribute('src',product.image);
